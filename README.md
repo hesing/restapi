@@ -31,4 +31,9 @@ Search any field ( exact match )
 GET http://localhost:8000/api/authors/?location=Bangalore
 ```
 
+Search any field containing text ( + exact match )
+```
+GET http://localhost:8000/api/authors/?location=hy
+```
+
 

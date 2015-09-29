@@ -4,9 +4,20 @@ var authorRouter = express.Router();
 
 module.exports = function(){
 	authorRouter.route("/")
+		// exact match
+		// .get(function(req, res){
+		// 	Author.find(req.query, function(err, records){
+		// 		if(err){
+		// 			res.status(500).send(err);
+		// 		} else {
+		// 			res.json(records);
+		// 		}
+		// 	});
+		// })
+		// contains match ( including exact match)
 		.get(function(req, res){
-			Author.find(req.query, function(err, records){
-				if(err){
+			Author.find({ 'name': new RegExp(req.query.name, 'i'), 'location': new RegExp(req.query.location, 'i')}).sort('name').exec(function(err, records) {
+			   	if(err){
 					res.status(500).send(err);
 				} else {
 					res.json(records);
